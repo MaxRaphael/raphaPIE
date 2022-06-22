@@ -8,8 +8,8 @@ app = Flask(__name__)
 
  
 @app.route('/')
-def blogs():
-    return render_template('template.html')
+def blogs(id):
+    return render_template('template.html', number=id)
  
 
 
