@@ -4,7 +4,7 @@ from rhino3dm import *
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/pleaseWork')
 def hello_world():
-    return 'Hello from Max!'
+    return {"5": 45}
 
