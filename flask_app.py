@@ -9,11 +9,11 @@ def hello_world():
     return {"5": 45}
 
 @app.route('/URLEnd')
-def hello_world():
+def another():
     return "Another URL"
 
 @app.route('/URLEnd2')
-def hello_world():
+def more():
     return "MOARR URL"
 
 
