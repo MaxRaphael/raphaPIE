@@ -1,7 +1,4 @@
-<html>
-    <body>
-        <h1>This is a Blog Webpage</h1>
-        <h2>GOD HELP ME</h1>
-        <h3>Test Blog</h1>
-    </body>
-</html>
+{% for key,value in form_data.items() %}
+<h2> {{key}}</h2>
+<p> {{value}}</p>
+{% endfor %}
