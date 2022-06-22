@@ -7,7 +7,7 @@ from rhino3dm import *
 app = Flask(__name__)
  
  
-@app.route('/form')
+@app.route('/')
 def form():
     return render_template('form.html')
  
