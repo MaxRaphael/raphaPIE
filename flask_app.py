@@ -7,8 +7,7 @@ app = Flask(__name__)
  
 @app.route('/')
 def blogs():
-    return "Hello World"
-    #render_template('template.html', number=id)
+    return render_template('template.html')
 
 if __name__ == '__main__':
     app.run()
