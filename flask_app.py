@@ -1,7 +1,5 @@
 
-from flask import Flask
-from flask import render_template
-import request
+from flask import Flask,render_template,request
 from rhino3dm import *
 
 app = Flask(__name__)
