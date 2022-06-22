@@ -9,7 +9,7 @@ app = Flask(__name__)
 def blogs(id):
     return render_template('template.html', number=id)
  
-app.run(host='localhost', port=5000)
+
 
 
 
