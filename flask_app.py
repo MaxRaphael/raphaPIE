@@ -21,7 +21,7 @@ hops = hs.Hops(app)
         
     ],
     outputs=[
-        hs.HopsString("O", "O", "O"),
+        hs.HopsString("O", "O", "Similarity Ratio"),
         #hs.HopsString("O2","O2","O2"),
     ]
 )
@@ -73,7 +73,9 @@ def StringMatch(N0,N2):
     Ratio = levenshtein_ratio_and_distance(str1.lower(),str2.lower(),ratio_calc = True)
     output = ("Similarity Ratio = {0}".format(Ratio))
     #print( output)
-    return ("Similarity Ratio = {0}                ".format(Ratio) + (Distance))
+    return Ratio
+    #return ("Similarity Ratio = {0}                ".format(Ratio) + (Distance))
+    
         
     
     
