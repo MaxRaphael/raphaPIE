@@ -1,36 +1,34 @@
-from flask import Flask, request
-from concurrent.futures import process
-
-import pandas as pd
+from flask import Flask
 import numpy as np
 import ghhops_server as hs
-import rhino3dm
 
 
 app = Flask(__name__)
 hops = hs.Hops(app)
 
+@app.route('/StringMatch')
+def hello_world():
+    return 'Link Start'
+
 @hops.component(
     "/StringMatch",
     name="StringMatch",
-    description="This tool identifies a shape and then draws it into grasshopper",
+    description="This tool compares strings and returns a similarity score",
     inputs=[
-        hs.HopsString("N0", "N0", "N0"),
-        hs.HopsString("N2", "N2", "N2"),
+        hs.HopsString("String_1", "String_1", "String_1"),
+        hs.HopsString("String_2", "String_1", "String_1"),
 
         
     ],
     outputs=[
-        hs.HopsString("O", "O", "Similarity Ratio"),
-        #hs.HopsString("O2","O2","O2"),
+        hs.HopsString("Similarity_Ratio", "Similarity_Ratio", "Similarity_Ratio"),
+        hs.HopsString("Match_closeness","Match_closeness", "Match_closeness"),
     ]
 )
 
-@app.route('/help')
-
-def StringMatch(N0,N2):
-    str1 = str(N0)
-    str2 = str(N2)
+def StringMatch(String_1,String_2):
+    str1 = str(String_1)
+    str2 = str(String_2)
     
     def levenshtein_ratio_and_distance(s, t, ratio_calc = False):
 
@@ -65,19 +63,19 @@ def StringMatch(N0,N2):
             Ratio = ((len(s)+len(t)) - distance[row][col]) / (len(s)+len(t))
             return Ratio
         else:
-            # print(distance) # Uncomment if you want to see the matrix showing how the algorithm computes the cost of deletions,
+            # print(distance) 
             # insertions and/or substitutions
             # This is the minimum number of edits needed to convert string a to string b
             return "The strings are {} edits away from matching".format(distance[row][col])
     Distance = levenshtein_ratio_and_distance(str1.lower(),str2.lower())
     Ratio = levenshtein_ratio_and_distance(str1.lower(),str2.lower(),ratio_calc = True)
-    output = ("Similarity Ratio = {0}".format(Ratio))
-    #print( output)
-    return Ratio
-    #return ("Similarity Ratio = {0}                ".format(Ratio) + (Distance))
+    match = 0
+    if Ratio == 1:
+        match = "The strings match!"
+        Distance = match
     
-        
-    
+    return Ratio, Distance
+
     
 if __name__ == '__main__':
     app.run()
